@@ -42,7 +42,9 @@ var AUTOPREFIXER_BROWSERS = [
 
 // Lint JavaScript
 gulp.task('jshint', function () {
-  return gulp.src('app/scripts/**/*.js')
+  return gulp.src([
+      'app/scripts/**/*.js',
+      '!app/scripts/*.min.js'])
     .pipe(reload({stream: true, once: true}))
     .pipe($.jshint())
     .pipe($.jshint.reporter('jshint-stylish'))
@@ -70,6 +72,13 @@ gulp.task('copy', function () {
     dot: true
   }).pipe(gulp.dest('dist'))
     .pipe($.size({title: 'copy'}));
+});
+
+// Copy Font Awesome To Dist
+gulp.task('font-awesome', function () {
+  return gulp.src(['app/styles/font-awesome/**/*'])
+    .pipe(gulp.dest('dist/styles/font-awesome/'))
+    .pipe($.size({title: 'font-awesome'}));
 });
 
 // Copy Web Fonts To Dist
@@ -116,7 +125,6 @@ gulp.task('html', function () {
     .pipe($.if('*.css', $.uncss({
       html: [
         'app/index.html',
-        'app/styleguide.html'
       ],
       // CSS Selectors for UnCSS to ignore
       ignore: [
@@ -177,7 +185,7 @@ gulp.task('serve:dist', ['default'], function () {
 
 // Build Production Files, the Default Task
 gulp.task('default', ['clean'], function (cb) {
-  runSequence('styles', ['jshint', 'html', 'images', 'fonts', 'copy'], cb);
+  runSequence('styles', ['jshint', 'html', 'images', 'fonts', 'copy', 'font-awesome'], cb);
 });
 
 // Run PageSpeed Insights

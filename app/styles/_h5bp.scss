@@ -27,10 +27,6 @@ a {
   color: #00e;
 }
 
-a:visited {
-  color: #551a8b;
-}
-
 a:hover {
   color: #06e;
 }
@@ -65,8 +61,12 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
-
-
+h1,h2,h3,h4,h5,h6 {
+  color: #5086d1;
+  font-weight: 400;
+  margin-top: 0;
+  font-family: 'Source Sans Pro','PT Sans', Helvetica, Arial, sans-serif;
+}
 
 
 
