@@ -354,7 +354,7 @@ main {
   }
 
   main {
-    max-width: 864px;
+    max-width: 1200px;
     padding-top: 0;
     min-height: initial;
   }
@@ -362,6 +362,11 @@ main {
   body {
     overflow-y: scroll;
   }
+}
+
+.content {
+    text-align: justify;
+    text-justify: inter-word;
 }
 
 @font-face {
